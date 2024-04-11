@@ -33,9 +33,18 @@ const TextCss = styled.div`
   cursor: pointer;
 `;
 
+const Button = styled.button`
+  height: 50%;
+  width: 100%;
+  color: #000000;
+  margin-right: 10px;
+  margin-left: 10px;
+`;
+
 function Header() {
   const navigate = useNavigate();
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const [userName, setUserName] = useState("");
 
   const handleLogout = () => {
     console.log("로그아웃 버튼 클릭")
@@ -53,16 +62,24 @@ function Header() {
     navigate("/ClubNews");
   };
 
+
+  const goToUserPage= () => {
+    navigate("/UserPage");
+  };
   const location = useLocation();
   const loggedIn = location.state?.loggedIn || false;
 
   useEffect(() => {
     if (loggedIn) {
       setLoginSuccess(true);
+      const usernameFromState = location.state?.username || "";
+      setUserName(usernameFromState);
     } else {
       setLoginSuccess(false);
+      setUserName("");
     }
-  }, [loggedIn]);
+  }, [loggedIn, location.state]);
+
 
   return (
     <BackgroundColor>
@@ -74,14 +91,14 @@ function Header() {
       <RightWrapper>
           {loginSuccess ? (
               <>
-                <p> 000님 </p>
-                <button onClick={handleLogout}>로그아웃
-                </button>
+                <p onClick={goToUserPage}> {userName} 님  </p>
+                <Button onClick={handleLogout}>로그아웃
+                </Button>
               </>
           ) : (
               <>
-                <TextCss onClick={goToSign}>SIGNIN</TextCss>
-                <TextCss onClick={goToLogIn}>LOGIN</TextCss>
+                <TextCss onClick={goToSign}>SIGN IN</TextCss>
+                <TextCss onClick={goToLogIn}>LOG IN</TextCss>
               </>
           )}
       </RightWrapper>

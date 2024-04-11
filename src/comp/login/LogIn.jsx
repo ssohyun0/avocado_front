@@ -162,7 +162,7 @@ function LogIn() {
               "Authorization"
             ] = `Bearer ${accessToken}`;
             dispatch(loginUser(userInfo)); // 사용자 정보를 Redux store에 저장
-            navigate("/", { state: { loggedIn: true } }); // mainhome으로 이동
+            navigate("/", { state: { loggedIn: true, username: data.username}}); // mainhome으로 이동
           }
         })
         .catch((error) => {
