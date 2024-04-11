@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -38,6 +38,7 @@ function Header() {
   const [loginSuccess, setLoginSuccess] = useState(false);
 
   const handleLogout = () => {
+    console.log("로그아웃 버튼 클릭")
     setLoginSuccess(false);
   };
   const goToSign = () => {
@@ -55,9 +56,13 @@ function Header() {
   const location = useLocation();
   const loggedIn = location.state?.loggedIn || false;
 
-  if (loggedIn && !loginSuccess) {
-    setLoginSuccess(true); // Update loginSuccess state upon successful login
-  }
+  useEffect(() => {
+    if (loggedIn) {
+      setLoginSuccess(true);
+    } else {
+      setLoginSuccess(false);
+    }
+  }, [loggedIn]);
 
   return (
     <BackgroundColor>
