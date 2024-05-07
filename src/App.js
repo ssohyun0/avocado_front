@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./comp/main/MainPage";
 import SignIn from "./comp/signin/SignIn";
 import LogIn from "./comp/login/LogIn";
-import ClubNews from "./comp/news/NewsTemplate";
+import ClubNews from "./comp/news/ClubNews";
 import NickName from "./comp/signin/NickName";
 import UserPage from "./comp/userpage/UserPage";
 import ToS from "./comp/signin/ToS";
@@ -23,6 +23,7 @@ function App() {
             <Route path="/nickname" element={<NickName />} />
             <Route path="/tos" element={<ToS />} />
             <Route path="/userpage" element={<UserPage />} />
+            <Route path="/clubnews" element={<ClubNews />} />
           </Routes>
         </BrowserRouter>
       </div>

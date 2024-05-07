@@ -1,0 +1,34 @@
+.user-info {
+  background-color:#36567D;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  padding: 15px;
+  margin: 20px;
+  width: 50rem; 
+  max-width: 100%; 
+}
+
+.user-info-section {
+  margin-bottom: 10px;
+}
+
+.user-info-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.user-info-content {
+  color: #242020;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 9px;
+}
+
+
+@media (max-width: 768px) {
+  .user-info {
+    width: auto; 
+    margin: 20px 10px; 
+  }
+}
