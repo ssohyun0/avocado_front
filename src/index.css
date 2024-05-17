@@ -4,10 +4,16 @@
   src: url("./fonts/Fontspring-DEMO-integralcf-extrabold.otf")
     format("truetype");
 }
-
+@font-face {
+  font-family: "KBO-Dia-Gothic_bold";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff")
+    format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
 body {
   margin: 0;
-  font-family: "Fontspring-DEMO-integralcf-extrabold";
+  font-family: "KBO-Dia-Gothic_bold";
   /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif; */

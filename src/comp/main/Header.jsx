@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const BackgroundColor = styled.div`
   background-color: #b4ccdf;
-  height: 7vh;
+  padding: 10px 0;
   width: 100%;
   display: flex;
   align-items: center;
@@ -83,7 +83,7 @@ const Header = () => {
   };
 
   const goToUserPage = () => {
-    navigate("/UserPage", { state: { loggedIn: true, username: userName }});
+    navigate("/UserPage", { state: { loggedIn: true, username: userName } });
   };
 
   const handleSearch = () => {
@@ -92,37 +92,45 @@ const Header = () => {
   };
 
   return (
-      <BackgroundColor>
-        <LeftWrapper>
-          <TextCss onClick={goToClubNews}>Club News</TextCss>
-          <TextCss>Security News</TextCss>
-          <TextCss>CTF</TextCss>
-        </LeftWrapper>
-        <SearchContainer>
-          <input
-              type="search"
-              placeholder="웹사이트 검색..."
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-          />
-          <Button type="submit" onClick={handleSearch}>
-            검색
-          </Button>
-        </SearchContainer>
-        <RightWrapper>
-          {loginSuccess ? (
-              <>
-                <TextCss onClick={goToUserPage}> {userName} 님 </TextCss>
-                <Button onClick={handleLogout}>로그아웃</Button>
-              </>
-          ) : (
-              <>
-                <TextCss onClick={goToSign}>SIGN IN</TextCss>
-                <TextCss onClick={goToLogIn}>LOG IN</TextCss>
-              </>
-          )}
-        </RightWrapper>
-      </BackgroundColor>
+    <BackgroundColor>
+      <LeftWrapper>
+        <TextCss onClick={goToClubNews}>Club News</TextCss>
+        <TextCss>Security News</TextCss>
+        <TextCss>CTF</TextCss>
+      </LeftWrapper>
+      <SearchContainer>
+        <input
+          style={{ padding: "7px", borderRadius: "15px", border: "none" }}
+          // style="adding: 7px;
+          // border: navajowhite;
+          // border-radius: 15px;"
+          type="search"
+          placeholder="웹사이트 검색..."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <Button
+          type="submit"
+          style={{ display: "none" }}
+          onClick={handleSearch}
+        >
+          검색
+        </Button>
+      </SearchContainer>
+      <RightWrapper>
+        {loginSuccess ? (
+          <>
+            <TextCss onClick={goToUserPage}> {userName} 님 </TextCss>
+            <Button onClick={handleLogout}>로그아웃</Button>
+          </>
+        ) : (
+          <>
+            <TextCss onClick={goToSign}>SIGN IN</TextCss>
+            <TextCss onClick={goToLogIn}>LOG IN</TextCss>
+          </>
+        )}
+      </RightWrapper>
+    </BackgroundColor>
   );
 };
 
