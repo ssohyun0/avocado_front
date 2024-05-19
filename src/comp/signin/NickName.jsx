@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3000/api";
 
@@ -97,6 +97,9 @@ const ProfileImg = styled.div`
 
 function NickName() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { id, email, password } = location.state || {};
+
   const [uploadImgUrl, setUploadImgUrl] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [inputs, setInputs] = useState({
@@ -180,16 +183,17 @@ function NickName() {
       return alert("닉네임을 입력하세요.");
     } else if (!checkInput(name)) {
       return alert(
-        "이름에 입력할 수 없는 특수문자나 단어가 포함되어 있습니다.."
+        "이름에 입력할 수 없는 특수문자나 단어가 포함되어 있습니다."
       );
     } else if (!checkInput(nickname)) {
       return alert(
-        "닉네임에 입력할 수 없는 특수문자나 단어가 포함되어 있습니다.."
+        "닉네임에 입력할 수 없는 특수문자나 단어가 포함되어 있습니다."
       );
     } else {
-      navigate("/tos");
+      navigate("/tos", { state: { id, email, password, name, nickname } });
     }
   };
+
   return (
     <BackgroundColor>
       <Box>

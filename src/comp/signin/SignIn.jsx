@@ -119,7 +119,7 @@ function SignInMain() {
     } else if (password !== confirmPassword) {
       alert("비밀번호가 일치하지 않습니다.");
     } else {
-      navigate("/nickname");
+      navigate("/nickname", { state: { id, email, password } });
     }
   };
 

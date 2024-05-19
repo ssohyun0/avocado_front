@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { BsChevronRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import LogoImg from "../../assets/img/logo.png";
 import ModalComp from "./ModalComp";
+axios.defaults.baseURL = "http://localhost:3000/api";
 
 const CheckboxLabel = styled.label`
   display: flex;
@@ -85,6 +87,8 @@ function ToS() {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   const [allTermsChecked, setAllTermsChecked] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { id, email, password, name, nickname } = location.state || {};
 
   useEffect(() => {
     if (serviceTermsChecked && privacyTermsChecked) {
@@ -108,6 +112,7 @@ function ToS() {
       setPrivacyTermsChecked(!privacyTermsChecked);
     }
   };
+
   const handleCloseServiceModal = () => {
     setShowServiceModal(false);
   };
@@ -119,9 +124,23 @@ function ToS() {
   const goToNickName = () => {
     navigate("/nickname");
   };
-  const goToMainHome = () => {
+
+  const goToMainHome = async () => {
     if (allTermsChecked) {
-      navigate("/");
+      try {
+        const response = await axios.post("/auth/signup", {
+          id,
+          email,
+          password,
+          name,
+          nickname,
+        });
+        console.log("Registration successful:", response.data);
+        navigate("/");
+      } catch (error) {
+        console.error("Registration error:", error);
+        alert("회원가입 중 에러가 발생했습니다.");
+      }
     } else {
       alert("모든 이용약관에 동의해주세요.");
     }
