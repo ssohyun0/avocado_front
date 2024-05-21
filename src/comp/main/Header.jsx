@@ -65,9 +65,14 @@ const Header = () => {
     }
   }, [location.state]);
 
-  const handleLogout = () => {
-    console.log("로그아웃 버튼 클릭");
-    setLoginSuccess(false);
+  const handleLogout = async () => {
+    try {
+      console.log("로그아웃 버튼 클릭");
+      await axios.post("auth/signout");
+      setLoginSuccess(false);
+    } catch (error) {
+      console.error("로그아웃 실패:", error);
+    }
   };
 
   const goToSign = () => {
